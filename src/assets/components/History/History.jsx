@@ -2,7 +2,6 @@
 import HistoryData from "./HistoryData";
 
 const History = ({ arr }) => {
-  console.log(arr.reverse());
   const reverseData = [...arr].reverse();
   const data = reverseData.map((el, i) => (
     <HistoryData data={el} key={i + 1} />

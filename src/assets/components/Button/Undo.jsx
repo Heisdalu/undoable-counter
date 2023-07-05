@@ -1,17 +1,12 @@
-import { useContext } from "react";
-import userContext from "../../../context/context";
+/* eslint-disable react/prop-types */
 
-const Undo = () => {
-  const { update, mainArr, updateArr } = useContext(userContext);
-
-  console.log(mainArr);
+const Undo = ({ update, mainArr, updateArr }) => {
   const clickHandler = () => {
     if (mainArr.length === 0) return;
 
     const itemArr = [...mainArr];
     const itemPop = itemArr.pop();
     const lastItem = itemArr[itemArr.length - 1]?.result || 0;
-    console.log(lastItem);
 
     updateArr({ type: "UPDATE-ITEM-REDO", item: itemPop });
     updateArr({ type: "UPDATE-ITEM-MAIN", item: itemArr });

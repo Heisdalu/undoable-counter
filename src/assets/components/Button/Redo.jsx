@@ -1,17 +1,10 @@
-import { useContext } from "react";
-import userContext from "../../../context/context";
-
 /* eslint-disable react/prop-types */
-const Redo = () => {
-  const { redoArr, updateArr, update } = useContext(userContext);
+const Redo = ({ redoArr, updateArr, update }) => {
   const clickHandler = () => {
     if (redoArr.length === 0) return;
-
     const itemArr = [...redoArr];
     const itemOut = itemArr.pop();
-    const lastItem = itemArr[itemArr.length - 1]?.result;
-
-    console.log(itemOut, itemOut);
+    const lastItem = itemOut.result;
 
     updateArr({ type: "UPDATE-ITEM-MAIN", item: itemOut });
     updateArr({ type: "UPDATE-ITEM-REDO", item: itemArr });

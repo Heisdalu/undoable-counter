@@ -1,16 +1,14 @@
 /* eslint-disable react/prop-types */
-import { createContext, useReducer } from "react";
+import { useReducer } from "react";
+import userContext from "./ctx";
 
 const initial = {
   mainArr: [],
   redoArr: [],
   value: 0,
   updateArr: function () {},
-  removeItem: function () {},
   update: function () {},
 };
-
-const userContext = createContext({});
 
 const contextReducer = (state, action) => {
   if (action.type === "UPDATE") {
@@ -36,18 +34,6 @@ const contextReducer = (state, action) => {
         : [...state.redoArr, action.item],
     };
   }
-  if (action.type === "REMOVEITEM-UNDO") {
-    return {
-      ...state,
-      undmainArroARr: [...state.undoARr].pop(),
-    };
-  }
-  if (action.type === "REMOVEITEM-REDO") {
-    return {
-      ...state,
-      redoArr: [...state.redoArr].pop(),
-    };
-  }
   return state;
 };
 
@@ -57,9 +43,6 @@ export const ContextProvider = ({ children }) => {
   const updateArrHandler = (obj) => {
     dispatch({ type: obj.type, item: obj.item });
   };
-  const removeHandler = (type) => {
-    dispatch({ type: type });
-  };
   const updateHandler = (value) => {
     dispatch({ type: "UPDATE", value: value });
   };
@@ -67,7 +50,6 @@ export const ContextProvider = ({ children }) => {
   const dataState = {
     ...ctxState,
     updateArr: updateArrHandler,
-    removeItem: removeHandler,
     update: updateHandler,
   };
 
@@ -76,4 +58,3 @@ export const ContextProvider = ({ children }) => {
   );
 };
 
-export default userContext;

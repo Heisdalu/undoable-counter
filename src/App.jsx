@@ -3,17 +3,18 @@ import Button from "./assets/components/Button/Button";
 import Redo from "./assets/components/Button/Redo";
 import Undo from "./assets/components/Button/Undo";
 import History from "./assets/components/History/History";
-import userContext from "./context/context";
+import userContext from "./context/ctx";
 
 const App = () => {
-  const { value, mainArr, redoArr } = useContext(userContext);
+  const { value, mainArr, redoArr, updateArr, update } =
+    useContext(userContext);
 
   return (
     <div className="text-center border-1 w-[100%] mt-[2rem] md:max-w-[700px] md:mx-[auto]">
-      <h1>Undoable Counter</h1>
+      <h1 className="text-[1.5rem]">Undoable Counter</h1>
       <div className="mt-[1rem] flex justify-center space-x-[2rem]">
-        <Undo />
-        <Redo arr={redoArr} />
+        <Undo mainArr={mainArr} update={update} updateArr={updateArr} />
+        <Redo redoArr={redoArr} update={update} updateArr={updateArr} />
       </div>
       <div className="mt-[2rem] md:flex md:items-center md:max-w-[400px] md:mx-[auto]">
         <div className="flex space-x-1 justify-center md:justify-normal">
