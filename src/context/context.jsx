@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
-import { useReducer } from "react";
-import userContext from "./ctx";
+import { useEffect, useReducer } from "react";
+import UserContext from "./ctx";
 
 const initial = {
   mainArr: [],
@@ -38,7 +38,11 @@ const contextReducer = (state, action) => {
 };
 
 export const ContextProvider = ({ children }) => {
-  const [ctxState, dispatch] = useReducer(contextReducer, initial);
+  const checkLocalStorage = localStorage.getItem("counter");
+  const initialData = checkLocalStorage
+    ? JSON.parse(checkLocalStorage)
+    : initial;
+  const [ctxState, dispatch] = useReducer(contextReducer, initialData);
 
   const updateArrHandler = (obj) => {
     dispatch({ type: obj.type, item: obj.item });
@@ -53,8 +57,15 @@ export const ContextProvider = ({ children }) => {
     update: updateHandler,
   };
 
+  localStorage.setItem("counter", JSON.stringify(dataState));
+
+  useEffect(() => {
+    if (!checkLocalStorage) {
+      localStorage.setItem("counter", JSON.stringify(initial));
+    }
+  }, [checkLocalStorage]);
+
   return (
-    <userContext.Provider value={dataState}>{children}</userContext.Provider>
+    <UserContext.Provider value={dataState}>{children}</UserContext.Provider>
   );
 };
-

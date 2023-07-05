@@ -1,9 +1,9 @@
-import userContext from "../../../context/ctx";
+import UserContext from "../../../context/ctx";
 import { useContext } from "react";
 
 /* eslint-disable react/prop-types */
 const Button = ({ value }) => {
-  const { value: userValue, update, updateArr } = useContext(userContext);
+  const { value: userValue, update, updateArr } = useContext(UserContext);
 
   const clickHandler = () => {
     const result = userValue + value;

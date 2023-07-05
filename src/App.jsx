@@ -3,11 +3,11 @@ import Button from "./assets/components/Button/Button";
 import Redo from "./assets/components/Button/Redo";
 import Undo from "./assets/components/Button/Undo";
 import History from "./assets/components/History/History";
-import userContext from "./context/ctx";
+import UserContext from "./context/ctx";
 
 const App = () => {
   const { value, mainArr, redoArr, updateArr, update } =
-    useContext(userContext);
+    useContext(UserContext);
 
   return (
     <div className="text-center border-1 w-[100%] mt-[2rem] md:max-w-[700px] md:mx-[auto]">
