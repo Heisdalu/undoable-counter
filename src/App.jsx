@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import Button from "./assets/components/Button/Button";
-import Redo from "./assets/components/Button/Redo";
-import Undo from "./assets/components/Button/Undo";
-import History from "./assets/components/History/History";
+import Button from "./components/Button/Button";
+import Redo from "./components/Button/Redo";
+import Undo from "./components/Button/Undo";
+import History from "./components/History/History";
 import UserContext from "./context/ctx";
 
 const App = () => {

@@ -1,4 +1,4 @@
-import UserContext from "../../../context/ctx";
+import UserContext from "../../context/ctx";
 import { useContext } from "react";
 
 /* eslint-disable react/prop-types */
